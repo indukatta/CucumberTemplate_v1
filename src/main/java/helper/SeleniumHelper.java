@@ -11,19 +11,24 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+//import org.apache.commons.io.FileUtils;
+//import org.junit.Assert;
+//import org.openqa.selenium.Alert;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.JavascriptExecutor;
+//import org.openqa.selenium.NoSuchElementException;
+//import org.openqa.selenium.OutputType;
+//import org.openqa.selenium.TakesScreenshot;
+//import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.Select;
+//
+//import io.cucumber.java.Scenario;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-
-import io.cucumber.java.Scenario;
+import org.testng.Assert;
 import utils.DriverFactory;
 
 public class SeleniumHelper extends DriverFactory {
@@ -147,6 +152,27 @@ public class SeleniumHelper extends DriverFactory {
 		try {
 			waitForElementVisible(element);
 			(element).sendKeys(text);
+			check = true;
+		} catch (Exception e) {
+			System.out.println("Unable to send keys to element due to: " + e.toString());
+			Assert.fail("Unable to send keys to element due to: " + e.toString());
+		}
+		return check;
+	}
+
+	/**
+	 * Method to send keys to Web-Element
+	 *
+	 * @param element
+	 * @param key
+	 * @return
+	 */
+	public boolean sendKeys(WebElement element, Keys key) {
+		boolean check = false;
+
+		try {
+			waitForElementVisible(element);
+			(element).sendKeys(key);
 			check = true;
 		} catch (Exception e) {
 			System.out.println("Unable to send keys to element due to: " + e.toString());
@@ -320,7 +346,7 @@ public class SeleniumHelper extends DriverFactory {
 	 * Method to select dropdown by By-element Visible Text
 	 * 
 	 * @param ele
-	 * @param text
+	 * @param value
 	 */
 	public void selectByValue(By ele, String value) {
 		Select sel = new Select(driver.findElement(ele));
@@ -331,7 +357,7 @@ public class SeleniumHelper extends DriverFactory {
 	 * Method to select dropdown by Web-Element Visible Text
 	 * 
 	 * @param ele
-	 * @param text
+	 * @param value
 	 */
 	public void selectByValue(WebElement ele, String value) {
 		Select sel = new Select(ele);
@@ -414,8 +440,7 @@ public class SeleniumHelper extends DriverFactory {
 	}*/
 
 	/**
-	 * @param src
-	 * @param des
+	 * @param sc
 	 * @throws IOException
 	 */
 	/*private static void copyFileUSingStream(File src, File des) throws IOException {

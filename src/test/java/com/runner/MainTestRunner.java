@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(features = { "src/test/java/featureFiles/" },
 glue = {"stepDefinitions" },
 monochrome = true, 
-tags = "@automationPractice",
+//tags = "@googleSearch",
 plugin = { "pretty",
 		"html:target/cucumber",
 		"json:target/cucumber.json",

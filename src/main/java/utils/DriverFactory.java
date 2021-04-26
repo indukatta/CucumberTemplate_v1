@@ -2,6 +2,7 @@ package utils;
 
 import java.util.concurrent.TimeUnit;
 
+import PageObjects.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -9,22 +10,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Constants.BrowserConstants;
-import PageObjects.AA_HomePageObjects;
-import PageObjects.AA_SearchResultsPage;
-import PageObjects.AP_RegistrationPage;
-import PageObjects.AutomationPracticePageObjects;
-import PageObjects.NewToursPageObjects;
+import stepDefinitions.GoogleSearchSteps;
 
 public class DriverFactory {
 	
 	public static WebDriver driver;
 	public static WebDriverWait wait;
-	public static AA_HomePageObjects aa_HomePage;
-	public static AA_SearchResultsPage aa_SearchPage;
-	public static NewToursPageObjects newToursPage;
-	public static AutomationPracticePageObjects automationPracPage;
-	public static AP_RegistrationPage ap_regPage;
-	
+
+	public static GoogleSearchPage googleSearchPage;
+
 	public WebDriver getWebdriver() {
 		try {
 		ReadConfigFile file = new ReadConfigFile();
